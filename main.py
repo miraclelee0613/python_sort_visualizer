@@ -2,6 +2,7 @@ import tkinter as tk
 from turtle import TurtleScreen, RawTurtle
 import random
 from tkinter import messagebox  # 메시지 박스를 사용하기 위해 추가
+from heap_sort import HeapSort  # 힙 정렬을 위한 클래스 임포트
 
 # 프로그램을 만들면서 위치 수정을 쉽게 하기 위해서 기준 위치 등을 상수로 선언
 BASE_X = -234
@@ -95,6 +96,12 @@ class Visualizer:
             self.bubble_sort()
         elif algorithm == "selection":
             self.selection_sort()
+        elif algorithm == "quick":
+            self.quick_sort()
+        elif algorithm == "merge":
+            self.merge_sort()
+        elif algorithm == "heap":
+            self.heap_sort()
         # 다른 정렬 알고리즘 추가 가능
 
     def bubble_sort(self):
@@ -136,6 +143,19 @@ class Visualizer:
             self.root.update()  # 화면 업데이트
             self.root.after(30)  # 지연 시간 (속도 증가)
 
+    def quick_sort(self):
+        # 퀵 정렬 구현
+        pass  # 여기에 퀵 정렬 알고리즘을 추가하세요
+
+    def merge_sort(self):
+        # 병합 정렬 구현
+        pass  # 여기에 병합 정렬 알고리즘을 추가하세요
+
+    def heap_sort(self):
+        # 힙 정렬 구현
+        heap_sorter = HeapSort(self.bars)
+        heap_sorter.sort()  # 힙 정렬 메서드 호출
+
     def restore_colors(self, index1, index2):
         # 색상 복원
         self.bars[index1].set_color()  # 원래 색상으로 복원
@@ -145,6 +165,9 @@ class Visualizer:
         tk.Label(self.root, text="정렬 알고리즘 선택:").pack()
         tk.Radiobutton(self.root, text="버블 정렬", variable=self.algorithm_var, value="bubble").pack(anchor=tk.W)
         tk.Radiobutton(self.root, text="선택 정렬", variable=self.algorithm_var, value="selection").pack(anchor=tk.W)
+        tk.Radiobutton(self.root, text="퀵 정렬", variable=self.algorithm_var, value="quick").pack(anchor=tk.W)
+        tk.Radiobutton(self.root, text="병합 정렬", variable=self.algorithm_var, value="merge").pack(anchor=tk.W)
+        tk.Radiobutton(self.root, text="힙 정렬", variable=self.algorithm_var, value="heap").pack(anchor=tk.W)
 
     def create_shuffle_button(self):
         shuffle_button = tk.Button(self.root, text="막대 섞기", command=self.shuffle_bars)
